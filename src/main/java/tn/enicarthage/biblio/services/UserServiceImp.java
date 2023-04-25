@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import tn.enicarthage.biblio.Entities.Utilisateur;
+import tn.enicarthage.biblio.Entities.UtilisateurModificationAspect;
 import tn.enicarthage.biblio.jwt.BiblioUsersDetailsService;
 import tn.enicarthage.biblio.jwt.JwtFilter;
 import tn.enicarthage.biblio.jwt.JwtUtil;
@@ -170,6 +171,17 @@ public class UserServiceImp implements UserService{
 		return Biblio.getResponseEntity("true", HttpStatus.OK);
 	}
 
-	
+	@Autowired
+    private UtilisateurModificationAspect utilisateurModificationAspect;
+@Override
+	public Utilisateur ChangeInfo(Utilisateur user) {
+	utilisateurModificationAspect.beforeUpdateInformationsPersonnelles(user); 
+		Utilisateur usr = userRepo.findById(user.getId());
+		usr.setNom(user.getNom());
+		usr.setContactNumber(user.getContactNumber());
+		usr.setEmail(user.getEmail());
+		usr.setPassword(user.getPassword());
+		return userRepo.save(usr);
+	}
 
 }

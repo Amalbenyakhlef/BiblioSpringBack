@@ -21,6 +21,7 @@ public interface UserRepository extends JpaRepository<Utilisateur,Integer>{
 	//not yet
 	List<Utilisateur> findByRole(String role);
 	
+	
 	@Transactional
 	@Modifying
 	Integer updateStatus(@Param("status") String status, @Param("id") Integer id);

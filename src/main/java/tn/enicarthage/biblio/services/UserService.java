@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 
+import tn.enicarthage.biblio.Entities.Utilisateur;
 import tn.enicarthage.biblio.utils.UserApprouvAdmin;
 
 public interface UserService {
@@ -14,4 +15,9 @@ public interface UserService {
 	ResponseEntity<List<UserApprouvAdmin>> getAllUser();
 	ResponseEntity<String> update(Map<String,String> requestMap);
 	ResponseEntity<String> checkToken();
+	static Utilisateur findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	Utilisateur ChangeInfo(Utilisateur user);
 }
